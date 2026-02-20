@@ -40,4 +40,6 @@
 - Private profiles hide chirps from non-followers
 
 ## CORS
-- Configured to only allow requests from `http://localhost:3000`
+- Allowed origins configured via `CORS_ORIGIN` environment variable (production)
+- In development, allows `http://localhost:3000` and `http://127.0.0.1:3000`
+- Uses dynamic origin reflection so the correct `Access-Control-Allow-Origin` header is returned for each allowed origin
