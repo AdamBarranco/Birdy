@@ -71,4 +71,23 @@ if (!adminExists) {
   ).run('admin', 'admin@birdy.com', hash);
 }
 
+// Insert test users if not exists (for development and manual testing)
+if (process.env.NODE_ENV === 'development') {
+  const testUsers = [
+    { username: 'alice', email: 'alice@birdy.com', password: 'Test1234!' },
+    { username: 'bob', email: 'bob@birdy.com', password: 'Test1234!' },
+    { username: 'charlie', email: 'charlie@birdy.com', password: 'Test1234!' },
+  ];
+
+  for (const user of testUsers) {
+    const exists = db.prepare('SELECT id FROM users WHERE username = ?').get(user.username);
+    if (!exists) {
+      const hash = bcrypt.hashSync(user.password, 10);
+      db.prepare(
+        'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)'
+      ).run(user.username, user.email, hash);
+    }
+  }
+}
+
 module.exports = db;

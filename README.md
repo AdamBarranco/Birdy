@@ -12,6 +12,17 @@ features
 - create an admin account to delete users, monitor and see users
 - user page where a user can see their account profile and change to public/private this will change so that other users who dont follow them cannot see their feed/posts
 
+## Test Accounts
+
+The following accounts are seeded automatically when the server starts (development mode only):
+
+| Username | Email               | Password   | Role  |
+|----------|---------------------|------------|-------|
+| admin    | admin@birdy.com     | Admin1234! | Admin |
+| alice    | alice@birdy.com     | Test1234!  | User  |
+| bob      | bob@birdy.com       | Test1234!  | User  |
+| charlie  | charlie@birdy.com   | Test1234!  | User  |
+
 Standards
 - all functionality should be tested in a folder called tests these tests will use jest and be seperated into there own files within the folder for readability
 - the use of a layered architecture should be intergrated and met with presentation layer, bussiness layer and data layer each layer should be cohesive
