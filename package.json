@@ -1,0 +1,20 @@
+{
+  "name": "birdy",
+  "version": "1.0.0",
+  "description": "Birdy social media platform",
+  "scripts": {
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "test": "jest tests/ --forceExit"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 10000
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "jest": "^30.2.0",
+    "supertest": "^7.2.2"
+  }
+}
