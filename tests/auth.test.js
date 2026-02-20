@@ -40,4 +40,23 @@ describe('Auth Routes', () => {
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('token');
   });
+
+  test('OPTIONS /api/auth/login - CORS preflight from allowed origin returns 204', async () => {
+    const res = await request(app)
+      .options('/api/auth/login')
+      .set('Origin', 'http://localhost:3000')
+      .set('Access-Control-Request-Method', 'POST')
+      .set('Access-Control-Request-Headers', 'Content-Type');
+    expect(res.statusCode).toBe(204);
+    expect(res.headers['access-control-allow-origin']).toBe('http://localhost:3000');
+  });
+
+  test('POST /api/auth/login - CORS from 127.0.0.1:3000 returns correct ACAO header', async () => {
+    const res = await request(app)
+      .post('/api/auth/login')
+      .set('Origin', 'http://127.0.0.1:3000')
+      .send({ email: testUser.email, password: testUser.password });
+    expect(res.statusCode).toBe(200);
+    expect(res.headers['access-control-allow-origin']).toBe('http://127.0.0.1:3000');
+  });
 });
