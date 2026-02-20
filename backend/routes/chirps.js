@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../middleware/auth');
+const { apiLimiter } = require('../middleware/rateLimiter');
 const chirpController = require('../controllers/chirpController');
 
-router.use(auth);
+router.use(apiLimiter, auth);
 
 router.get('/', chirpController.getFeed);
 router.post('/', chirpController.createChirp);

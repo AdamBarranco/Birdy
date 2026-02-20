@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../middleware/auth');
+const { apiLimiter } = require('../middleware/rateLimiter');
 const userController = require('../controllers/userController');
 
-router.use(auth);
+router.use(apiLimiter, auth);
 
 // PUT /privacy MUST be before GET /:id to avoid "privacy" being treated as an id
 router.put('/privacy', userController.togglePrivacy);

@@ -1,19 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const rateLimit = require('express-rate-limit');
+const { authLimiter } = require('./middleware/rateLimiter');
 
 const app = express();
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
-
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  standardHeaders: true,
-  legacyHeaders: false,
-});
 
 app.use('/api/auth', authLimiter);
 
