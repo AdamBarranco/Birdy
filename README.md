@@ -12,6 +12,11 @@ features
 - create an admin account to delete users, monitor and see users
 - user page where a user can see their account profile and change to public/private this will change so that other users who dont follow them cannot see their feed/posts
 
+## Screenshots
+
+### Login Page
+![Birdy Login Page](https://github.com/user-attachments/assets/b02188fc-9a99-42a6-9d6d-6863d7524a0c)
+
 ## Test Accounts
 
 The following accounts are seeded automatically when the server starts (development mode only):
